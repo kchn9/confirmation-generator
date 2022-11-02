@@ -17,7 +17,7 @@ export default function Message(props) {
         display: flex;
         align-items: center;
         font-size: clamp(10px, 1.3vw, 18px);
-        margin: 0.4em;
+        margin: 0.4em 0 0 0;
         line-height: 1.4;
       `}
       ref={pRef}
