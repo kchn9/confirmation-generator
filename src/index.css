@@ -39,6 +39,17 @@
   -webkit-text-size-adjust: 100%;
 }
 
+:root::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAACqADAAQAAAABAAAACgAAAAA7eLj1AAAAP0lEQVQYGWN4XaFr/P//fykGYsDrMkPiFIIMI00x0BnEuACsBpfJTESbgKwQFALIfKxsXFaiKCZOERbrsEUAAEtDFZnRPZ5KAAAAAElFTkSuQmCC);
+}
+
 body {
   margin: 0;
 }

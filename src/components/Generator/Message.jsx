@@ -28,6 +28,7 @@ export default function Message(props) {
           position: absolute;
           right: 2em;
           cursor: pointer;
+          font-weight: 700;
           background: -webkit-linear-gradient(
             var(--background-primary),
             var(--background-secondary)
