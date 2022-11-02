@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <footer
       css={css`
-        position: absolute;
-        left: 0;
+        position: fixed;
         right: 0;
+        left: 0;
         bottom: 0;
         box-sizing: border-box;
         background-color: var(--text-primary);
