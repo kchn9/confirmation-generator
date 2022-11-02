@@ -13,7 +13,7 @@ export default function Message(props) {
         position: relative;
         color: var(--text-secondary);
         background-color: var(--text-primary);
-        padding: 1.4em 7em 1.4em 1.4em;
+        padding: 1.4em 8.4em 1.4em 1.4em;
         display: flex;
         align-items: center;
         font-size: clamp(10px, 1.3vw, 18px);
