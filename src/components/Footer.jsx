@@ -10,7 +10,7 @@ export default function Footer() {
         bottom: 0;
         box-sizing: border-box;
         background-color: var(--text-primary);
-        padding: 0.3em 4em;
+        padding: 0.4em 4em;
         text-align: center;
         font-size: 0.6em;
         letter-spacing: 1.4px;
