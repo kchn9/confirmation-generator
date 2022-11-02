@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header, Settings, Generator } from "./components/";
+import { Header, Settings, Generator, Footer } from "./components/";
 
 export default function App() {
   const [settingsVisible, setSettingsVisible] = useState(false);
@@ -21,6 +21,7 @@ export default function App() {
         />
       )}
       <Generator handleUTR={handleUTR} handleDoubles={handleDoubles} />
+      <Footer />
     </>
   );
 }
