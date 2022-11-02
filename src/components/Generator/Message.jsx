@@ -13,7 +13,7 @@ export default function Message(props) {
         position: relative;
         color: var(--text-secondary);
         background-color: var(--text-primary);
-        padding: 1.4em 7.6em 1.4em 1.4em;
+        padding: 1.4em 7em 1.4em 1.4em;
         display: flex;
         align-items: center;
         font-size: clamp(10px, 1.3vw, 18px);
@@ -28,22 +28,30 @@ export default function Message(props) {
           position: absolute;
           right: 2em;
           cursor: pointer;
-          background-color: transparent;
+          background: -webkit-linear-gradient(
+            var(--background-primary),
+            var(--background-secondary)
+          );
+          text-transform: uppercase;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           border-radius: 1em;
-          border: 2px solid var(--background-primary);
-          color: var(--background-primary);
-          font-size: 1em;
-          padding: 0.4em 0.7em;
+          border: 1px solid var(--background-primary);
+          font-size: clamp(10px, 1.2vw, 16px);
+          padding: 0.6em 1.4em;
           transition: all ease 200ms;
 
           &:hover {
-            border: 2px solid var(--background-secondary);
-            color: var(--background-secondary);
+            border-color: var(--text-primary);
+            background-clip: unset;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
           }
         `}
         onClick={() => handleCopy(pRef)}
       >
-        Copy!
+        copy
       </button>
     </p>
   );
