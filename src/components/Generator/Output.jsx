@@ -108,7 +108,7 @@ export default function Output({
         ))}
         <button
           css={css`
-            margin: 1em auto 0 auto;
+            margin: 2em auto 0 auto;
             grid-column: 6 / span 2;
             font-size: clamp(10px, 1.2vw, 16px);
             background-color: var(--background-primary);
