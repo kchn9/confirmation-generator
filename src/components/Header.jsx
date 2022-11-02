@@ -55,7 +55,9 @@ export default function Header({ settingsVisible, setSettingsVisible }) {
           font-size: clamp(18px, 3vw, 42px);
           font-weight: 500;
           padding: 0.15em 0;
+          cursor: pointer;
         `}
+        onClick={() => window.location.reload(false)}
       >
         message generator
       </h1>

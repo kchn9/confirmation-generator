@@ -2,38 +2,51 @@ import Form from "./Form";
 import Output from "./Output";
 import { useState } from "react";
 
+function isPlayerFilled(player) {
+  return player.fullName && player.countryCode;
+}
+
 export default function Generator({ handleUTR, handleDoubles }) {
-  const [courtName, setCourtName] = useState("C1");
+  const [courtName, setCourtName] = useState("");
   const [teamOne, setTeamOne] = useState({
     playerOne: {
-      fullName: "xyz",
-      countryCode: "POL",
+      fullName: "",
+      countryCode: "",
     },
-    playerTwo: null,
+    playerTwo: {
+      fullName: "",
+      countryCode: "",
+    },
   });
 
   const [teamTwo, setTeamTwo] = useState({
     playerOne: {
-      fullName: "abc",
-      countryCode: "GER",
+      fullName: "",
+      countryCode: "",
     },
-    playerTwo: null,
+    playerTwo: {
+      fullName: "",
+      countryCode: "",
+    },
   });
 
   if (handleDoubles) {
     if (
       courtName &&
-      teamOne.playerOne &&
-      teamOne.playerTwo &&
-      teamTwo.playerOne &&
-      teamTwo.playerTwo
+      isPlayerFilled(teamOne.playerOne) &&
+      isPlayerFilled(teamOne.playerTwo) &&
+      isPlayerFilled(teamTwo.playerOne) &&
+      isPlayerFilled(teamTwo.playerTwo)
     ) {
       return (
         <main>
           <Form
+            courtName={courtName}
             setCourtName={setCourtName}
+            teamOne={teamOne}
             setTeamOne={setTeamOne}
             setTeamTwo={setTeamTwo}
+            teamTwo={teamTwo}
             handleDoubles={handleDoubles}
           />
           <Output
@@ -47,13 +60,21 @@ export default function Generator({ handleUTR, handleDoubles }) {
       );
     }
   } else {
-    if (courtName && teamOne.playerOne && teamTwo.playerOne) {
+    if (
+      courtName &&
+      isPlayerFilled(teamOne.playerOne) &&
+      isPlayerFilled(teamTwo.playerTwo)
+    ) {
       return (
         <main>
           <Form
+            courtName={courtName}
             setCourtName={setCourtName}
+            teamOne={teamOne}
             setTeamOne={setTeamOne}
             setTeamTwo={setTeamTwo}
+            teamTwo={teamTwo}
+            handleDoubles={handleDoubles}
           />
           <Output
             courtName={courtName}
@@ -69,9 +90,12 @@ export default function Generator({ handleUTR, handleDoubles }) {
   return (
     <main>
       <Form
+        courtName={courtName}
         setCourtName={setCourtName}
+        teamOne={teamOne}
         setTeamOne={setTeamOne}
         setTeamTwo={setTeamTwo}
+        teamTwo={teamTwo}
         handleDoubles={handleDoubles}
       />
     </main>

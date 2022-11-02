@@ -1,7 +1,13 @@
 import { css } from "@emotion/react";
 import TextInput from "../TextInput";
 
-export default function PlayerInput({ playerNo }) {
+export default function PlayerInput({
+  playerNo,
+  playerFullName,
+  setPlayerFullName,
+  playerCountryCode,
+  setPlayerCountryCode,
+}) {
   return (
     <div
       css={css`
@@ -18,7 +24,11 @@ export default function PlayerInput({ playerNo }) {
           flex: 3;
         `}
       >
-        <TextInput placeholder={`Player ${playerNo} name`} />
+        <TextInput
+          value={playerFullName}
+          onChange={setPlayerFullName}
+          placeholder={`Player ${playerNo} name`}
+        />
       </div>
 
       <div
@@ -36,7 +46,11 @@ export default function PlayerInput({ playerNo }) {
           }
         `}
       >
-        <TextInput placeholder={`Player ${playerNo} country`} />
+        <TextInput
+          value={playerCountryCode}
+          onChange={(value) => setPlayerCountryCode(value.toUpperCase())}
+          placeholder={`Player ${playerNo} country`}
+        />
       </div>
     </div>
   );

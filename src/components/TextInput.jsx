@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export default function TextInput({ placeholder }) {
+export default function TextInput({ value, onChange, placeholder }) {
   return (
     <input
       css={css`
@@ -13,6 +13,7 @@ export default function TextInput({ placeholder }) {
         line-height: 0;
         font-weight: 100;
         font-family: inherit;
+        box-shadow: 2px 2px 4px var(--background-secondary);
         outline: 3px solid transparent;
 
         &::placeholder {
@@ -24,6 +25,8 @@ export default function TextInput({ placeholder }) {
         }
       `}
       type="text"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
     />
   );

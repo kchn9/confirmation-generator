@@ -2,7 +2,39 @@ import { css } from "@emotion/react";
 import TextInput from "../TextInput";
 import PlayerInput from "./PlayerInput";
 
-export default function Form({ handleDoubles }) {
+export default function Form({
+  courtName,
+  setCourtName,
+  setTeamOne,
+  teamOne,
+  setTeamTwo,
+  teamTwo,
+  handleDoubles,
+}) {
+  function handleClear() {
+    setCourtName("");
+    setTeamOne({
+      playerOne: {
+        fullName: "",
+        countryCode: "",
+      },
+      playerTwo: {
+        fullName: "",
+        countryCode: "",
+      },
+    });
+    setTeamTwo({
+      playerOne: {
+        fullName: "",
+        countryCode: "",
+      },
+      playerTwo: {
+        fullName: "",
+        countryCode: "",
+      },
+    });
+  }
+
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -42,10 +74,13 @@ export default function Form({ handleDoubles }) {
             }
           `}
         >
-          <TextInput placeholder="Court name" />
+          <TextInput
+            value={courtName}
+            onChange={(value) => setCourtName(value.toUpperCase())}
+            placeholder="Court name"
+          />
         </div>
 
-        {/* Team one*/}
         <div
           css={css`
             grid-column: 3 / span 8;
@@ -55,7 +90,33 @@ export default function Form({ handleDoubles }) {
           `}
         >
           {handleDoubles && <h2>Team 1</h2>}
-          <PlayerInput playerNo={"one"} />
+          <PlayerInput
+            playerNo={"one"}
+            playerFullName={teamOne.playerOne.fullName}
+            setPlayerFullName={(value) =>
+              setTeamOne((prev) => {
+                return {
+                  ...prev,
+                  playerOne: {
+                    ...prev.playerOne,
+                    fullName: value,
+                  },
+                };
+              })
+            }
+            playerCountryCode={teamOne.playerOne.countryCode}
+            setPlayerCountryCode={(value) =>
+              setTeamOne((prev) => {
+                return {
+                  ...prev,
+                  playerOne: {
+                    ...prev.playerOne,
+                    countryCode: value,
+                  },
+                };
+              })
+            }
+          />
         </div>
 
         {handleDoubles && (
@@ -67,11 +128,36 @@ export default function Form({ handleDoubles }) {
               }
             `}
           >
-            <PlayerInput playerNo={"two"} />
+            <PlayerInput
+              playerNo={"two"}
+              playerFullName={teamOne.playerTwo.fullName}
+              setPlayerFullName={(value) =>
+                setTeamOne((prev) => {
+                  return {
+                    ...prev,
+                    playerTwo: {
+                      ...prev.playerTwo,
+                      fullName: value,
+                    },
+                  };
+                })
+              }
+              playerCountryCode={teamOne.playerTwo.countryCode}
+              setPlayerCountryCode={(value) =>
+                setTeamOne((prev) => {
+                  return {
+                    ...prev,
+                    playerTwo: {
+                      ...prev.playerTwo,
+                      countryCode: value,
+                    },
+                  };
+                })
+              }
+            />
           </div>
         )}
 
-        {/* Team two*/}
         {handleDoubles && (
           <div
             css={css`
@@ -83,7 +169,33 @@ export default function Form({ handleDoubles }) {
           >
             <h2>Team 2</h2>
 
-            <PlayerInput playerNo={"one"} />
+            <PlayerInput
+              playerNo={"one"}
+              playerFullName={teamTwo.playerOne.fullName}
+              setPlayerFullName={(value) =>
+                setTeamTwo((prev) => {
+                  return {
+                    ...prev,
+                    playerOne: {
+                      ...prev.playerOne,
+                      fullName: value,
+                    },
+                  };
+                })
+              }
+              playerCountryCode={teamTwo.playerOne.countryCode}
+              setPlayerCountryCode={(value) =>
+                setTeamTwo((prev) => {
+                  return {
+                    ...prev,
+                    playerOne: {
+                      ...prev.playerOne,
+                      countryCode: value,
+                    },
+                  };
+                })
+              }
+            />
           </div>
         )}
 
@@ -95,33 +207,59 @@ export default function Form({ handleDoubles }) {
             }
           `}
         >
-          <PlayerInput playerNo={"two"} />
+          <PlayerInput
+            playerNo={"two"}
+            playerFullName={teamTwo.playerTwo.fullName}
+            setPlayerFullName={(value) =>
+              setTeamTwo((prev) => {
+                return {
+                  ...prev,
+                  playerTwo: {
+                    ...prev.playerTwo,
+                    fullName: value,
+                  },
+                };
+              })
+            }
+            playerCountryCode={teamTwo.playerTwo.countryCode}
+            setPlayerCountryCode={(value) =>
+              setTeamTwo((prev) => {
+                return {
+                  ...prev,
+                  playerTwo: {
+                    ...prev.playerTwo,
+                    countryCode: value,
+                  },
+                };
+              })
+            }
+          />
         </div>
         <button
           css={css`
-            margin-top: 2em;
+            margin: 1em auto 0 auto;
             grid-column: 6 / span 2;
-            font-size: clamp(12px, 1.4vw, 18px);
-            background-color: transparent;
+            font-size: clamp(10px, 1.2vw, 16px);
+            background-color: var(--background-primary);
             color: var(--text-primary);
             text-transform: uppercase;
             padding: 0.5em;
             border-radius: 1em;
             font-weight: 800;
-            border: 3px solid var(--text-primary);
             cursor: pointer;
             transition: all ease 200ms;
-            outline: 2px solid transparent;
+            border: 2px solid transparent;
+            width: 50%;
 
             &:hover {
-              border: 3px solid transparent;
-              background-color: var(--background-primary);
+              width: 100%;
             }
 
             @media screen and (max-width: 728px) {
-              grid-column: 5 / span 4;
+              grid-column: 4 / span 6;
             }
           `}
+          onClick={handleClear}
         >
           Clear
         </button>

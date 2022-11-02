@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 
 import Message from "./Message";
 import messsageTemplates from "../../utils/messages";
+import { useRef } from "react";
 
 export default function Output({
   courtName,
@@ -10,6 +11,17 @@ export default function Output({
   handleUTR,
   handleDoubles,
 }) {
+  const messagesRef = useRef([]);
+
+  function handleCopyAll(refsArray) {
+    let toCopy = "";
+    const { current } = refsArray;
+    current.forEach((ref) => {
+      toCopy += ref.innerText.slice(0, -5);
+    });
+    navigator.clipboard.writeText(toCopy);
+  }
+
   const messages = handleUTR
     ? messsageTemplates.utrMessages
     : messsageTemplates.defaultMessages;
@@ -20,10 +32,13 @@ export default function Output({
         css={css`
           display: grid;
           grid-template-columns: repeat(12, 1fr);
+          padding-bottom: 3em;
         `}
       >
-        {messages.map((message) => (
+        {messages.map((message, i) => (
           <div
+            key={i}
+            ref={(el) => (messagesRef.current[i] = el)}
             css={css`
               grid-column: 3 / span 8;
               @media screen and (max-width: 768px) {
@@ -38,29 +53,29 @@ export default function Output({
         ))}
         <button
           css={css`
-            margin-top: 2em;
+            margin: 1em auto 0 auto;
             grid-column: 6 / span 2;
-            font-size: clamp(12px, 1.4vw, 18px);
-            background-color: transparent;
+            font-size: clamp(10px, 1.2vw, 16px);
+            background-color: var(--background-primary);
             color: var(--text-primary);
             text-transform: uppercase;
             padding: 0.5em;
             border-radius: 1em;
             font-weight: 800;
-            border: 3px solid var(--text-primary);
             cursor: pointer;
             transition: all ease 200ms;
-            outline: 2px solid transparent;
+            border: 2px solid transparent;
+            width: 50%;
 
             &:hover {
-              border: 3px solid transparent;
-              background-color: var(--background-primary);
+              width: 100%;
             }
 
             @media screen and (max-width: 728px) {
               grid-column: 5 / span 4;
             }
           `}
+          onClick={() => handleCopyAll(messagesRef)}
         >
           Copy all
         </button>
@@ -75,8 +90,10 @@ export default function Output({
           padding-bottom: 3em;
         `}
       >
-        {messages.map((message) => (
+        {messages.map((message, i) => (
           <div
+            key={i}
+            ref={(el) => (messagesRef.current[i] = el)}
             css={css`
               grid-column: 3 / span 8;
               @media screen and (max-width: 768px) {
@@ -85,35 +102,35 @@ export default function Output({
             `}
           >
             <Message>
-              {`${courtName} / ${teamOne.playerOne.fullName} (${teamOne.playerOne.countryCode}) vs ${teamTwo.playerOne.fullName} (${teamTwo.playerOne.countryCode}) / ${message} `}
+              {`${courtName} / ${teamOne.playerOne.fullName} (${teamOne.playerOne.countryCode}) vs ${teamTwo.playerTwo.fullName} (${teamTwo.playerTwo.countryCode}) / ${message} `}
             </Message>
           </div>
         ))}
         <button
           css={css`
-            margin-top: 2em;
+            margin: 1em auto 0 auto;
             grid-column: 6 / span 2;
-            font-size: clamp(12px, 1.4vw, 18px);
-            background-color: transparent;
+            font-size: clamp(10px, 1.2vw, 16px);
+            background-color: var(--background-primary);
             color: var(--text-primary);
             text-transform: uppercase;
             padding: 0.5em;
             border-radius: 1em;
             font-weight: 800;
-            border: 3px solid var(--text-primary);
             cursor: pointer;
             transition: all ease 200ms;
-            outline: 2px solid transparent;
+            border: 2px solid transparent;
+            width: 50%;
 
             &:hover {
-              border: 3px solid transparent;
-              background-color: var(--background-primary);
+              width: 100%;
             }
 
             @media screen and (max-width: 728px) {
-              grid-column: 5 / span 4;
+              grid-column: 4 / span 6;
             }
           `}
+          onClick={() => handleCopyAll(messagesRef)}
         >
           Copy all
         </button>

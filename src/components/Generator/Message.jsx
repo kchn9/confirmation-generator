@@ -1,6 +1,12 @@
 import { css } from "@emotion/react";
+import { useRef } from "react";
 
 export default function Message(props) {
+  const pRef = useRef(null);
+  function handleCopy(ref) {
+    navigator.clipboard.writeText(ref.current.innerText.slice(0, -6));
+  }
+
   return (
     <p
       css={css`
@@ -10,10 +16,11 @@ export default function Message(props) {
         padding: 1.4em 7.6em 1.4em 1.4em;
         display: flex;
         align-items: center;
-        font-size: clamp(12px, 1.4vw, 18px);
+        font-size: clamp(10px, 1.3vw, 18px);
         margin: 0.4em;
-        line-height: 1.6;
+        line-height: 1.4;
       `}
+      ref={pRef}
     >
       {props.children}
       <button
@@ -34,6 +41,7 @@ export default function Message(props) {
             color: var(--background-secondary);
           }
         `}
+        onClick={() => handleCopy(pRef)}
       >
         Copy!
       </button>
