@@ -43,16 +43,15 @@ export default function Output({
             background-color: var(--background-primary);
             color: var(--text-primary);
             text-transform: uppercase;
-            padding: 0.5em;
+            padding: 0.5em 1.5em;
             border-radius: 1em;
             font-weight: 800;
             cursor: pointer;
             transition: all ease 200ms;
             border: 2px solid transparent;
-            width: 50%;
 
             &:hover {
-              width: 100%;
+              padding: 0.5em 3em;
             }
 
             @media screen and (max-width: 728px) {
@@ -98,16 +97,15 @@ export default function Output({
             background-color: var(--background-primary);
             color: var(--text-primary);
             text-transform: uppercase;
-            padding: 0.5em;
+            padding: 0.5em 1.5em;
             border-radius: 1em;
             font-weight: 800;
             cursor: pointer;
             transition: all ease 200ms;
             border: 2px solid transparent;
-            width: 50%;
 
             &:hover {
-              width: 100%;
+              padding: 0.5em 3em;
             }
 
             @media screen and (max-width: 728px) {
