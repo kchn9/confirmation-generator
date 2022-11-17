@@ -11,16 +11,9 @@ export default function Settings({
 }) {
   const settingsRef = useRef(null);
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (settingsRef.current && settingsRef.current.contains(event.target)) {
-        setSettingsVisible(false);
-      }
-    }
-    document.addEventListener("mouseout", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mouseout", handleClickOutside);
-    };
+    settingsRef.current.addEventListener("mouseleave", () =>
+      setSettingsVisible(false)
+    );
   }, [settingsRef]);
 
   return (
