@@ -18,6 +18,7 @@ export default function App() {
           setHandleUTR={setHandleUTR}
           handleDoubles={handleDoubles}
           setHandleDoubles={setHandleDoubles}
+          setSettingsVisible={setSettingsVisible}
         />
       )}
       <Generator handleUTR={handleUTR} handleDoubles={handleDoubles} />

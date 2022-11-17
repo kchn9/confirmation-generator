@@ -1,14 +1,31 @@
 import { css } from "@emotion/react";
 import Switch from "./Switch";
+import { useEffect, useRef } from "react";
 
 export default function Settings({
   handleUTR,
   setHandleUTR,
   handleDoubles,
   setHandleDoubles,
+  setSettingsVisible,
 }) {
+  const settingsRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (settingsRef.current && settingsRef.current.contains(event.target)) {
+        setSettingsVisible(false);
+      }
+    }
+    document.addEventListener("mouseout", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mouseout", handleClickOutside);
+    };
+  }, [settingsRef]);
+
   return (
     <aside
+      ref={settingsRef}
       css={css`
         box-sizing: border-box;
         position: absolute;
